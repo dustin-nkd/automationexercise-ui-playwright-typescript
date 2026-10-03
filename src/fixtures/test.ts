@@ -3,11 +3,13 @@ import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { HomePage } from '../pages/home-page';
 import { attachAdsBlocker } from '../utils/ads-blocker';
+import { LoginSignupPage } from '../pages/login-signup-page';
 
 type AppFixtures = {
     header: Header;
     footer: Footer;
     homePage: HomePage;
+    loginSignupPage: LoginSignupPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -29,6 +31,10 @@ export const test = base.extend<AppFixtures>({
 
     homePage: async ({ page }, use) => {
         await use(new HomePage(page));
+    },
+
+    loginSignupPage: async( { page }, use) => {
+        await use(new LoginSignupPage(page));
     }
 });
 
