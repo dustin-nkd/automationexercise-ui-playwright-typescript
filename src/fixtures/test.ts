@@ -7,6 +7,7 @@ import { LoginSignupPage } from '../pages/login-signup-page';
 import { SignupPage } from '../pages/signup-page';
 import { AccountCreatedPage } from '../pages/account-createad-page';
 import { AccountDeletedPage } from '../pages/account-deleted-page';
+import { ContactUsPage } from '../pages/contact-us-page';
 
 type AppFixtures = {
     header: Header;
@@ -16,6 +17,7 @@ type AppFixtures = {
     signupPage: SignupPage;
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
+    contactUsPage: ContactUsPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -53,7 +55,11 @@ export const test = base.extend<AppFixtures>({
 
     accountDeletedPage: async ({ page }, use) => {
         await use(new AccountDeletedPage(page));
-    }
+    },
+
+    contactUsPage: async ({ page }, use) => {
+        await use(new ContactUsPage(page));
+    },
 });
 
 export { expect };
