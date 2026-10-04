@@ -8,6 +8,7 @@ import { SignupPage } from '../pages/signup-page';
 import { AccountCreatedPage } from '../pages/account-createad-page';
 import { AccountDeletedPage } from '../pages/account-deleted-page';
 import { ContactUsPage } from '../pages/contact-us-page';
+import { TestCasesPage } from '../pages/test-cases-page';
 
 type AppFixtures = {
     header: Header;
@@ -18,6 +19,7 @@ type AppFixtures = {
     accountCreatedPage: AccountCreatedPage;
     accountDeletedPage: AccountDeletedPage;
     contactUsPage: ContactUsPage;
+    testCasesPage: TestCasesPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -59,6 +61,10 @@ export const test = base.extend<AppFixtures>({
 
     contactUsPage: async ({ page }, use) => {
         await use(new ContactUsPage(page));
+    },
+
+    testCasesPage: async ({ page }, use) => {
+        await use(new TestCasesPage(page));
     },
 });
 
