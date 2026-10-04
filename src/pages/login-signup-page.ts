@@ -30,30 +30,30 @@ export class LoginSignupPage {
         this.signupEmail = signupForm.getByPlaceholder('Email Address');
         this.signupButton = signupForm.getByRole('button', { name: 'Signup' });
         this.loginError = page.getByText('Your email or password is incorrect!');
-    }
+      } 
 
     async expectLoginFormVisible(): Promise<void> {
-    await expect(this.page).toHaveURL(/\/login\/?$/);
-    await expect(this.loginHeading).toBeVisible();
-  }
+        await expect(this.page).toHaveURL(/\/login\/?$/);
+        await expect(this.loginHeading).toBeVisible();
+    }
 
-  async expectSignupFormVisible(): Promise<void> {
-    await expect(this.signupHeading).toBeVisible();
-  }
+    async expectSignupFormVisible(): Promise<void> {
+        await expect(this.signupHeading).toBeVisible();
+    }
 
-  async login(email: string, password: string): Promise<void> {
-    await this.loginEmail.fill(email);
-    await this.loginPassword.fill(password);
-    await this.loginButton.click();
-  }
+    async login(email: string, password: string): Promise<void> {
+        await this.loginEmail.fill(email);
+        await this.loginPassword.fill(password);
+        await this.loginButton.click();
+    }
 
-  async startSignup(name: string, email: string): Promise<void> {
-    await this.signupName.fill(name);
-    await this.signupEmail.fill(email);
-    await this.signupButton.click();
-  }
+    async startSignup(name: string, email: string): Promise<void> {
+        await this.signupName.fill(name);
+        await this.signupEmail.fill(email);
+        await this.signupButton.click();
+    }
 
-  async expectIncorrectCredentialsError(): Promise<void> {
-    await expect(this.loginError).toBeVisible();
-  }
+    async expectIncorrectCredentialsError(): Promise<void> {
+        await expect(this.loginError).toBeVisible();
+    }
 }

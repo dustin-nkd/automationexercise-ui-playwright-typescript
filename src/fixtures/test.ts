@@ -4,12 +4,18 @@ import { Header } from '../components/header';
 import { HomePage } from '../pages/home-page';
 import { attachAdsBlocker } from '../utils/ads-blocker';
 import { LoginSignupPage } from '../pages/login-signup-page';
+import { SignupPage } from '../pages/signup-page';
+import { AccountCreatedPage } from '../pages/account-createad-page';
+import { AccountDeletedPage } from '../pages/account-deleted-page';
 
 type AppFixtures = {
     header: Header;
     footer: Footer;
     homePage: HomePage;
     loginSignupPage: LoginSignupPage;
+    signupPage: SignupPage;
+    accountCreatedPage: AccountCreatedPage;
+    accountDeletedPage: AccountDeletedPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -33,8 +39,20 @@ export const test = base.extend<AppFixtures>({
         await use(new HomePage(page));
     },
 
-    loginSignupPage: async( { page }, use) => {
+    loginSignupPage: async ({ page }, use) => {
         await use(new LoginSignupPage(page));
+    },
+
+    signupPage: async ({ page }, use) => {
+        await use(new SignupPage(page));
+    },
+
+    accountCreatedPage: async ({ page }, use) => {
+        await use(new AccountCreatedPage(page));
+    },
+
+    accountDeletedPage: async ({ page }, use) => {
+        await use(new AccountDeletedPage(page));
     }
 });
 
