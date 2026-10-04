@@ -10,18 +10,13 @@ export class LoginSignupPage {
     readonly signupEmail: Locator;
     readonly signupButton: Locator;
     readonly loginError: Locator;
+    readonly existingEmailError: Locator;
 
     constructor(private readonly page: Page) {
-        const loginForm = page
-        .locator('form')
-        .filter({ has: page.getByRole('button', { name: 'Login' }) });
-        const signupForm = page
-        .locator('form')
-        .filter({ has: page.getByRole('button', { name: 'Signup' }) });
+        const loginForm = page.locator('form').filter({ has: page.getByRole('button', { name: 'Login' }) });
+        const signupForm = page.locator('form').filter({ has: page.getByRole('button', { name: 'Signup' }) });
 
-        this.loginHeading = page.getByRole('heading', {
-            name: 'Login to your account',
-        });
+        this.loginHeading = page.getByRole('heading', { name: 'Login to your account' });
         this.signupHeading = page.getByText('New User Signup!');
         this.loginEmail = loginForm.getByPlaceholder('Email Address');
         this.loginPassword = loginForm.getByPlaceholder('Password');
@@ -30,7 +25,8 @@ export class LoginSignupPage {
         this.signupEmail = signupForm.getByPlaceholder('Email Address');
         this.signupButton = signupForm.getByRole('button', { name: 'Signup' });
         this.loginError = page.getByText('Your email or password is incorrect!');
-      } 
+        this.existingEmailError = page.getByText('Email Address already exist!');
+    } 
 
     async expectLoginFormVisible(): Promise<void> {
         await expect(this.page).toHaveURL(/\/login\/?$/);
@@ -55,5 +51,9 @@ export class LoginSignupPage {
 
     async expectIncorrectCredentialsError(): Promise<void> {
         await expect(this.loginError).toBeVisible();
+    }
+
+    async expectEmailAlreadyExists(): Promise<void> {
+        await expect(this.existingEmailError).toBeVisible();
     }
 }
