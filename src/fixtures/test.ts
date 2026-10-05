@@ -5,10 +5,12 @@ import { HomePage } from '../pages/home-page';
 import { attachAdsBlocker } from '../utils/ads-blocker';
 import { LoginSignupPage } from '../pages/login-signup-page';
 import { SignupPage } from '../pages/signup-page';
-import { AccountCreatedPage } from '../pages/account-createad-page';
+import { AccountCreatedPage } from '../pages/account-created-page';
 import { AccountDeletedPage } from '../pages/account-deleted-page';
 import { ContactUsPage } from '../pages/contact-us-page';
 import { TestCasesPage } from '../pages/test-cases-page';
+import { ProductDetailPage } from '../pages/product-detail-page';
+import { ProductsPage } from '../pages/products-page';
 
 type AppFixtures = {
     header: Header;
@@ -20,6 +22,8 @@ type AppFixtures = {
     accountDeletedPage: AccountDeletedPage;
     contactUsPage: ContactUsPage;
     testCasesPage: TestCasesPage;
+    productDetailPage: ProductDetailPage;
+    productsPage: ProductsPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -65,6 +69,14 @@ export const test = base.extend<AppFixtures>({
 
     testCasesPage: async ({ page }, use) => {
         await use(new TestCasesPage(page));
+    },
+
+    productDetailPage: async ({ page }, use) => {
+        await use(new ProductDetailPage(page));
+    },
+
+    productsPage: async ({ page }, use) => {
+        await use(new ProductsPage(page));
     },
 });
 

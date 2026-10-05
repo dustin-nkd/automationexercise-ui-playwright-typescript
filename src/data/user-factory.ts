@@ -45,7 +45,7 @@ export function buildSignupPayload(
 
     return {
         ...credentials,
-        title: overrides.title?? 'Mr',
+        title: overrides.title ?? 'Mr',
         birth: {
             day: '10',
             month: 'May',

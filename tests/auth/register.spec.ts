@@ -46,7 +46,7 @@ test('Test Case 1: Register User', async ({
         await header.expectLoggedInAs(user.name);
     });
 
-    await test.step("Click 'Delete Account' and verify 'ACCOUNT DELTED!'", async () => {
+    await test.step("Click 'Delete Account' and verify 'ACCOUNT DELETED!'", async () => {
         await header.deleteAccount();
         await accountDeletedPage.expectLoaded();
         await accountDeletedPage.continue();
