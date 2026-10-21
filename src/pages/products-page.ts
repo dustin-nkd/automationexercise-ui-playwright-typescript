@@ -6,6 +6,7 @@ export class ProductsPage {
     readonly searchButton: Locator;
     readonly searchHeading: Locator;
     readonly viewProductLinks: Locator;
+    readonly productCards: Locator;
 
     constructor(private readonly page: Page) {
         this.heading = page.getByRole('heading', { name: 'All Products' });
@@ -14,6 +15,7 @@ export class ProductsPage {
         this.searchButton = page.locator('#submit_search');
         this.searchHeading = page.getByRole('heading', { name: 'Searched Products' });
         this.viewProductLinks = page.getByRole('link', { name: 'View Product' });
+        this.productCards = page.locator('.features_items .product-image-wrapper');
     }
 
     async expectAllProductsVisible(): Promise<void> {
@@ -34,5 +36,11 @@ export class ProductsPage {
     async expectSearchResult(productName: string): Promise<void> {
         await expect(this.searchHeading).toBeVisible();
         await expect(this.page.getByText(productName).first()).toBeVisible();
+    }
+
+    async addProductByIndex(index: number): Promise<void> {
+        const card = this.productCards.nth(index);
+        await card.hover();
+        await card.locator('.overlay-content .add-to-cart').click();
     }
 }

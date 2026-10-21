@@ -11,6 +11,8 @@ import { ContactUsPage } from '../pages/contact-us-page';
 import { TestCasesPage } from '../pages/test-cases-page';
 import { ProductDetailPage } from '../pages/product-detail-page';
 import { ProductsPage } from '../pages/products-page';
+import { CartModal } from '../components/cart-modal';
+import { CartPage } from '../pages/cart-page';
 
 type AppFixtures = {
     header: Header;
@@ -24,6 +26,8 @@ type AppFixtures = {
     testCasesPage: TestCasesPage;
     productDetailPage: ProductDetailPage;
     productsPage: ProductsPage;
+    cartModal: CartModal;
+    cartPage: CartPage;
 };
 
 export const test = base.extend<AppFixtures>({
@@ -78,6 +82,14 @@ export const test = base.extend<AppFixtures>({
     productsPage: async ({ page }, use) => {
         await use(new ProductsPage(page));
     },
+
+    cartModal: async ({ page }, use) => {
+        await use(new CartModal(page));
+    },
+
+    cartPage: async ({ page }, use) => {
+        await use(new CartPage(page));
+    }
 });
 
 export { expect };
