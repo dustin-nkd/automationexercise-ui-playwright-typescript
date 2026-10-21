@@ -53,4 +53,24 @@ export class ProductDetailPage {
     async expectReviewSubmitted(): Promise<void> {
         await expect(this.reviewSuccess).toBeVisible();
     }
+
+    async setQuantity(quantity: number): Promise<void> {
+        await this.page.locator('#quantity').fill(String(quantity));
+    }
+
+    async addToCart(): Promise<void> {
+        await this.page.waitForFunction(() => {
+            const jQ = (window as any).$;
+            if (!jQ || !jQ._data) return false;
+            const el = jQ('.cart')[0];
+            if (!el) return false;
+            const events = jQ._data(el, 'events');
+            return Boolean(events && events.click && events.click.length > 0);
+        });
+        const responsePromise = this.page.waitForResponse(
+            (res) => res.url().includes('/add_to_cart/') && res.status() === 200
+        );
+        await this.page.getByRole('button', { name: 'Add to cart' }).click();
+        await responsePromise;
+    }
 }

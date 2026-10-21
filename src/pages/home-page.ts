@@ -23,4 +23,15 @@ export class HomePage {
         await expect(this.featuresItems).toBeVisible();
         await expect(this.header.homeLink).toBeVisible();
     }
-}
+
+    async expectRecommendedVisible(): Promise<void> {
+        await this.page.getByText('recommended items', { exact: false }).scrollIntoViewIfNeeded();
+        await expect(this.page.getByText(/recommended items/i)).toBeVisible();
+    }
+
+    async addFirstRecommended(): Promise<void> {
+        const item = this.page.locator('#recommended-item-carousel .product-image-wrapper').first();
+        await item.hover();
+        await item.locator('.add-to-cart').click();
+    }
+}
